@@ -1,4 +1,22 @@
 # react-dang
-React basic application and lightweight production server
 
-> follow the alpha release [here](https://github.com/simonedelpopolo/react-dang/tree/v0.0.x)
+###### React basic application and lightweight production server.
+
+> ℹ️ README for branch v0.0.x
+___
+
+## Index of Contents
+
+- [xxx](#)
+    - [yyy](#)
+    - [yyy](#)
+- [zzz](#)
+    - [www](#)
+- [hhh](#)
+- [MMM](#)
+- [fff](#)
+
+___
+
+
+___

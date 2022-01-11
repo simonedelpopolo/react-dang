@@ -1,0 +1,58 @@
+{
+  "name": "react-dang",
+  "version": "0.0.36-alpha",
+  "description": "React basic application and lightweight production server",
+  "type": "module",
+  "engines": {
+    "node": ">=v16.13.1 <17",
+    "npm": "~8.3.0"
+  },
+  "os": [
+    "linux",
+    "darwin",
+    "!win32"
+  ],
+  "main": "index.js",
+  "bin": {
+    "react-dang": "./index.js"
+  },
+  "scripts": {
+    "eslint": "npx eslint . --ext .js",
+    "eslint-fix": "npx eslint --fix . --ext .js",
+    "assertions": "cd ./assertions/ && node ./assertions.js",
+    "assertion0": "cd ./assertions/ && node ./assertions.js assertion0",
+    "assertionOnGoing": "cd ./assertions/ && node ./assertions.js assertionOnGoing"
+  },
+  "dependencies": {
+    "json-swiss-knife": "^1.5.7"
+  },
+  "devDependencies": {
+    "eslint": "^8.6.0",
+    "eslint-plugin-jsdoc": "^37.5.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/simonedelpopolo/react-dang#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simonedelpopolo/react-dang.git"
+  },
+  "bugs": {
+    "email": "simonedelpopolo@outlook.com",
+    "url": "https://github.com/simonedelpopolo/react-dang/issues"
+  },
+  "keywords": [
+    "dang",
+    "jsx",
+    "lightweight server",
+    "react",
+    "automation"
+  ],
+  "author": {
+    "name": "Simone Del Popolo",
+    "email": "simonedelpopolo@outlook.com",
+    "url": "https://github.com/simonedelpopolo"
+  },
+  "license": "Apache-2.0"
+}
