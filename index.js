@@ -12,7 +12,7 @@ if ( process.argv.length === 0 ) {
 
 const npmInstallReactDangApp = spawn( 'npm', [
     'install',
-    '@react-dang/app@v0.0.2-alpha',
+    '@react-dang/app@v0.0.3-alpha',
 ], {
     stdio: [
         'ignore',
@@ -40,7 +40,7 @@ npmInstallReactDangApp.on( 'exit', async code => {
     
     const removeDangApp = spawn( 'npm', [
         'remove',
-        '@react-dang/app@v0.0.2-alpha',
+        '@react-dang/app@v0.0.3-alpha',
     ], {
         stdio: [
             'ignore',
@@ -81,11 +81,14 @@ npmInstallReactDangApp.on( 'exit', async code => {
             
             packages.name = process.argv[ 0 ]
             await writeFile( './package.json', JSON.stringify( packages ) )
+                .then( () => {
+                    console.log( '\x1b[32m react-dang ready to go \x1b[0m' )
+                    console.log( '\x1b[32m "npm run build" in one terminal \x1b[0m' )
+                    console.log( '\x1b[32m "npm run serve-dev" in another \x1b[0m' )
+                } )
                 .catch( error => {throw error} )
     
-            console.log( '\x1b[32m react-dang ready to go \x1b[0m' )
-            console.log( '\x1b[32m "npm run build" in one terminal \x1b[0m' )
-            console.log( '\x1b[32m "npm run serve-dev" in another \x1b[0m' )
+            
         } )
     } )
 } )
