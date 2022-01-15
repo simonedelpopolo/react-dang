@@ -1,6 +1,6 @@
 {
   "name": "react-dang",
-  "version": "0.0.37-alpha",
+  "version": "0.0.38-alpha",
   "description": "React basic application and lightweight production server",
   "type": "module",
   "engines": {

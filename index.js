@@ -12,7 +12,7 @@ if ( process.argv.length === 0 ) {
 
 const npmInstallReactDangApp = spawn( 'npm', [
     'install',
-    '@react-dang/app@v0.0.3-alpha',
+    '@react-dang/app@v0.1.3-alpha',
 ], {
     stdio: [
         'ignore',
@@ -40,7 +40,7 @@ npmInstallReactDangApp.on( 'exit', async code => {
     
     const removeDangApp = spawn( 'npm', [
         'remove',
-        '@react-dang/app@v0.0.3-alpha',
+        '@react-dang/app@v0.1.3-alpha',
     ], {
         stdio: [
             'ignore',
