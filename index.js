@@ -83,8 +83,9 @@ npmInstallReactDangApp.on( 'exit', async code => {
             await writeFile( './package.json', JSON.stringify( packages ) )
                 .then( () => {
                     console.log( '\x1b[32m react-dang ready to go \x1b[0m' )
-                    console.log( '\x1b[32m "npm run build" in one terminal \x1b[0m' )
+                    console.log( '\x1b[32m "npm run build-dev" in one terminal \x1b[0m' )
                     console.log( '\x1b[32m "npm run serve-dev" in another \x1b[0m' )
+                    console.log( '\x1b[32m "open browser to http://localhost:3000" \x1b[0m' )
                 } )
                 .catch( error => {throw error} )
     
