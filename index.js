@@ -1,95 +1,63 @@
-#!/usr/bin/env node
-import { parse } from 'json-swiss-knife'
-import { spawn } from 'child_process'
-import { cp, readFile, rm, writeFile } from 'fs/promises'
+import {
+    command as c, commandSymbol,
+    entryPoint, entryPointSymbol,
+    flagsSymbol, flags as fs,
+    help as h, helpSymbol,
+    install as i, installSymbol,
+    version as v
+} from './lib/react-dang/exporter.js'
 
-process.argv.splice( 0, 2 )
 
-if ( process.argv.length === 0 ) {
-    process.stderr.write( 'please try -> npx react-dang `project-name`' )
-    process.exit( 1 )
+/**
+ * The flags checking function.
+ *
+ * @param {string[]} args - The given arguments array.
+ * @returns {string[]|Promise}
+ */
+export function flags( args ){
+    return fs[ flagsSymbol ]( args )
 }
 
-const npmInstallReactDangApp = spawn( 'npm', [
-    'install',
-    '@react-dang/app@v0.1.3-alpha',
-], {
-    stdio: [
-        'ignore',
-        process.stdout,
-        process.stderr,
-    ],
-} )
+/**
+ * The command checking function.
+ *
+ * @param {string []} command_ - The command name.
+ * @param {object} flags - The parsed flags.
+ * @returns {{} | Promise<void>}
+ */
+export function command( command_, flags ){
+    return c[ commandSymbol ]( command_, flags )
+}
 
-npmInstallReactDangApp.on( 'exit', async code => {
-    
-    if ( code !== 0 )
-        process.exit( 1 )
-    
-    const copy = await cp(
-        './node_modules/@react-dang/app/',
-        './',
-        {
-            force: true,
-            recursive: true,
-        } )
-        .catch( error => console.log( error ) )
-    
-    if ( typeof copy !== 'undefined' )
-        process.exit( 1 )
-    
-    const removeDangApp = spawn( 'npm', [
-        'remove',
-        '@react-dang/app@v0.1.3-alpha',
-    ], {
-        stdio: [
-            'ignore',
-            process.stdout,
-            process.stderr,
-        ],
-    } )
-    
-    removeDangApp.on( 'exit', async code => {
-        if ( code !== 0 )
-            process.exit( 1 )
-        
-        await rm( './node_modules/@react-dang/app', {
-            force: true,
-            recursive:true
-        } )
-        
-        console.log( '\x1b[32m removed @react-dang/app \x1b[0m' )
-        
-        const install = spawn( 'npm', [
-            'install',
-        ], {
-            stdio: [
-                'ignore',
-                process.stdout,
-                process.stderr,
-            ],
-        } )
-        
-        install.on( 'exit', async code => {
-            if ( code !== 0 )
-                process.exit( 1 )
-            
-            const packages = await parse(
-                await readFile( './package.json' )
-                    .catch( error => {throw error} ),
-            )
-            
-            packages.name = process.argv[ 0 ]
-            await writeFile( './package.json', JSON.stringify( packages ) )
-                .then( () => {
-                    console.log( '\x1b[32m react-dang ready to go \x1b[0m' )
-                    console.log( '\x1b[32m "npm run build-dev" in one terminal \x1b[0m' )
-                    console.log( '\x1b[32m "npm run serve-dev" in another \x1b[0m' )
-                    console.log( '\x1b[32m "open browser to http://localhost:3000" \x1b[0m' )
-                } )
-                .catch( error => {throw error} )
-    
-            
-        } )
-    } )
-} )
+/**
+ * Get help for the usage of react-dang.
+ *
+ * @param {string=} command - The command to get help for.
+ * @param {string=} flag - The flag to get help for.
+ * @returns {Promise<void>}
+ */
+export async function help( command, flag ){
+    return h[ helpSymbol ]( command, flag )
+}
+
+/**
+ * The installation function.
+ *
+ * @param {object} options - .
+ * @returns {Promise<void>}
+ */
+export async function install( options ){
+    return i[ installSymbol ]( options )
+}
+
+/**
+ * ReactDang entry point function.
+ * Shortened ad rd.
+ *
+ * @returns {Promise<*>}
+ */
+export async function rd( ){
+    return entryPoint[ entryPointSymbol ]()
+}
+
+export const version = v
