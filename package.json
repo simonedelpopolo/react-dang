@@ -1,6 +1,6 @@
 {
   "name": "react-dang",
-  "version": "0.0.39-alpha",
+  "version": "0.0.40-alpha",
   "description": "React basic application and lightweight production server",
   "type": "module",
   "engines": {
@@ -14,7 +14,7 @@
   ],
   "main": "index.js",
   "bin": {
-    "react-dang": "./index.js"
+    "react-dang": "./executable.js"
   },
   "scripts": {
     "eslint": "npx eslint . --ext .js",
@@ -24,7 +24,9 @@
     "assertionOnGoing": "cd ./assertions/ && node ./assertions.js assertionOnGoing"
   },
   "dependencies": {
-    "json-swiss-knife": "^1.5.7"
+    "boolean-jokes": "^1.4.5",
+    "json-swiss-knife": "^1.5.7",
+    "oftypes": "^0.3.0-beta"
   },
   "devDependencies": {
     "eslint": "^8.6.0",
