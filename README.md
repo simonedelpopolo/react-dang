@@ -16,9 +16,11 @@ ___
 
 `npm info react-dang # get the latest tag alpha`
 
-`npx react-dang@0.x.x 'your-react-application-name' # replace the major and minor with latest alpha release`
+`npx react-dang@0.x.x install --name='my-react-app' --directory='my-react-app' # replace the major and minor with latest alpha release`
 
-> ℹ react-dang deletes the module complitely
+> ℹ react-dang deletes the module completely
+
+`cd my-react-app`
 
 `npm run build-dev # this will watch for file changes and it will compile once saved.`
 
