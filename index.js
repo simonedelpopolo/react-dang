@@ -1,21 +1,23 @@
 import {
-    command as c, commandSymbol,
-    entryPoint, entryPointSymbol,
-    flagsSymbol, flags as fs,
-    help as h, helpSymbol,
-    install as i, installSymbol,
-    version as v
+    command__,
+    entryPoint__,
+    flags__,
+    help__,
+    install__,
+    process_exit__,
+    stderr__,
+    version__,
 } from './lib/react-dang/exporter.js'
 
+export const process_exit = process_exit__
 
 /**
- * The flags checking function.
+ * Wrap to process.stderr.write.
  *
- * @param {string[]} args - The given arguments array.
- * @returns {string[]|Promise}
+ * @param {string|any} message - The message to the stderr.
  */
-export function flags( args ){
-    return fs[ flagsSymbol ]( args )
+export function stderr( message ){
+    return stderr__( message )
 }
 
 /**
@@ -26,7 +28,27 @@ export function flags( args ){
  * @returns {{} | Promise<void>}
  */
 export function command( command_, flags ){
-    return c[ commandSymbol ]( command_, flags )
+    return command__( command_, flags )
+}
+
+/**
+ * ReactDang entry point function.
+ * Shortened ad rd.
+ *
+ * @returns {Promise<*>}
+ */
+export async function rd( ){
+    return entryPoint__()
+}
+
+/**
+ * The flags checking function.
+ *
+ * @param {string[]} args - The given arguments array.
+ * @returns {string[]|Promise}
+ */
+export function flags( args ){
+    return flags__( args )
 }
 
 /**
@@ -37,7 +59,7 @@ export function command( command_, flags ){
  * @returns {Promise<void>}
  */
 export async function help( command, flag ){
-    return h[ helpSymbol ]( command, flag )
+    return help__( command, flag )
 }
 
 /**
@@ -47,17 +69,7 @@ export async function help( command, flag ){
  * @returns {Promise<void>}
  */
 export async function install( options ){
-    return i[ installSymbol ]( options )
+    return install__( options )
 }
 
-/**
- * ReactDang entry point function.
- * Shortened ad rd.
- *
- * @returns {Promise<*>}
- */
-export async function rd( ){
-    return entryPoint[ entryPointSymbol ]()
-}
-
-export const version = v
+export const version = version__
