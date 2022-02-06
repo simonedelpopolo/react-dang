@@ -2,7 +2,7 @@ name: Node.js Tests and npmjs publishing
 
 on:
   push:
-    branches: [ v0.0.x ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -13,7 +13,6 @@ jobs:
         with:
           node-version: '16.13.1'
           registry-url: 'https://registry.npmjs.org'
-      - run: npm install -g npm
       - run: npm install
       - run: npm run assertions
       - run: npm publish
