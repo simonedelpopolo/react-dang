@@ -10,8 +10,7 @@ ___
 - [react-dang commands & flags](#react-dang-commands--flags)
 - [Once Installed](#once-installed)
   - [Description](#description)
-  - [The serve library](#the-serve-library)
-- [Usage](#usage)
+  - [Koorie](#koorie)
 
 ___
 
@@ -101,40 +100,9 @@ Available Components:
 
 ___
 
-- #### The serve library
+- #### Koorie
 
-This is a personal experimental server to serve the React generated code.  
-I have noticed a much better resource consumption, in terms of CPU and RAM by using a self-created library instead of using webpack serve function.  
-In certain cases I saw a 70% less resource usage.  
-> ⚠ Consider this ABSOLUTELY not ready for production environment but try it out for testing and profiling.
+Follow the link to know more about the experimental server Koorie
 
-> ℹ use it with production compiled React because it lacks of the socket connection to handle the hot and live reload provided by webpack devServer
-
-  - Spin up the alpha server library.
-```shell 
-npm run build-serve.server-alpha 
-# this script will compile the production and launch the serve library`
-
-# OR
-npm run build-prod # ℹ CTRL+c to stop watching
-
-node ./lib/serve.js # if you like it ;)
-
-# ℹ open the browser at http://localhost:3000
-
-```
-
-```javascript
-// ℹ to modify the port of the serve library
-// file ./lib/index.js
-// around line 52 you can modify port and address if needed
-
-server.listen( 3001, '0.0.0.0', null,
-    () => {
-        console.log( server.address() )
-        console.log( `http://${ server.address().address }:${ server.address().port }` )
-    } 
-)
-```
-
+> ℹ @react-dang/app now use [Koorie](https://github.com/simonedelpopolo/koorie) as experimental server.
 ___
