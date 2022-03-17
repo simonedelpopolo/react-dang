@@ -1,108 +1,191 @@
 # react-dang
 
-###### React basic application and lightweight production server.
+___
 
-> ℹ README for branch v0.0.x
+###### React basic application.
+
 ___
 
 ## Index of Contents
 
-- [react-dang commands & flags](#react-dang-commands--flags)
-- [Once Installed](#once-installed)
-  - [Description](#description)
-  - [Koorie](#koorie)
-
+- [Description](#description)
+- [Usage](#usage)
+- [Commands & Flags](#commands--flags)
+  - [install](#install)
+    - [--bare](#--bare)
+    - [--name](#--name)
+    - [--author](#--author)
+    - [--description](#--description)
+    - [--license](#--license)
+    - [--version](#--version)
+- [Road Map](#road-map)
+- [Koorie](#koorie)
+- [JetBrains OSS License](#jetbrains-oss-license)
+    
 ___
 
-### react-dang commands & flags
-
-- #### install [ i ]
-
-The `install` command will instantiate a React project based on [@react-dang/app](https://github.com/simonedelpopolo/react-dang-app/)
-
-  - available flags  
-    - --name [ -n ] &lt;string&gt; - Sets the project-name. It will be the property name of the package.json.  
-    - --directory [ -d ] &lt;string&gt; - Sets directory name where the project is deployed.  
-    - --replace [ -r ] &lt;null&gt; - This flag doesn't have a value. Instantiates the project in the current working directory.  
-      - ⚠ the --replace flag will overwrite everything in the current working directory
-  - road map for flags
-    - [ ] --blank [ -b ] &lt;null&gt; - Instantiates a React project without any components. A blank project.
-    - [ ] --author [ -a ] &lt;string&gt; - Sets the author name [package.json].  
-    - [ ] --license [ -l ] &lt;string&gt; - Sets the licence [package.json].  
-    - [ ] --description [ -s ] &lt;string&gt; - Sets the description [package.json].  
-    - [ ] --git [ -g ] &lt;null&gt; - Initializes the local git repository.  
-    - [ ] --url-repository [ -u ] &lt;string&gt; - Sets the git repository url [package.json].
-    - [ ] --dependency [ -i ] &lt;json&gt; - Sets extra-dependencies [package.json].
-    - [ ] --devDependency [ -id ] &lt;json&gt; - Sets extra-devDependencies [package.json].
-    - [ ] --scripts [ -s ] &lt;json&gt; - Sets extra-scripts [package.json].
+## Description
 
 ___
-
-- #### version [ v ]
-
-the `version` command shows the installed version of react-dang.
-___
-
-- #### help 
-
-the `help` command shows the help.
-___
-
-### Usage
-
-```shell
-
-npx react-dang install --name='my-react-app' --directory='my-react-app'
-
-```
-
-> ℹ react-dang deletes the module @react-dang/app completely from the hard drive.
-
-```shell
-
-cd my-react-app
-npm run build-dev 
-# this will watch for file changes and it will compile once saved.
-
-# ℹ open another terminal
-npm run serve-dev
-# ℹ open the browser at http://localhost:3000
-```
-
-> ℹ The simplest usage `npx react-dang i`  
-> _It will generate the project-name and the directory_
-___
-
-### Once Installed
-
-- #### Description
 
 The ReactDang Application is a npmjs package that will initialize a Basic React Web Application having two default pages to start working with.  
 Home page and a Contacts page.
 
 It uses:
-- Babel under the hood to compile the React Application.  
-- eslint for linting.  
+- Babel under the hood to compile the React Application.
+- eslint for linting.
 - It spins up webpack with two default configurations:
 
   - Development -> It builds the javascript specifically for webpack devServer.
-  - Production -> It builds the app with some performance improvements.
+  - Production -> It builds the app with some performance improvements.  
+  - Use Koorie just with Production configuration because it doesn't support webpack [Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/) with Development configuration.
 
-Available Components:
+Available Components for react basic application:
 
 - Header -> Handles the header shared between the web application pages.
 - Links -> Handles the available links of the web application. It is imported in the Header.
 - Index -> Handles the Home Page.
 - Contacts -> Handles the Contacts Page.
-- ContactForm -> Basic contact form. It is imported in the Contacts.  
-  - ⚠ Necessary from the developer to project the business logic of it, in particular DB and server side.  
+- ContactForm -> Basic contact form. It is imported in the Contacts.
 - Footer -> Handles the footer shared between the web application pages.
 
+React Dang install [@react-dang/app](https://www.npmjs.com/package/@react-dang/app) under the hood. you can browse the code at [GitHub](https://github.com/simonedelpopolo/react-dang-app). 
+
 ___
 
-- #### Koorie
+## Usage
 
-Follow the link to know more about the experimental server Koorie
+React Dang is very simple to use.
 
-> ℹ @react-dang/app now use [Koorie](https://github.com/simonedelpopolo/koorie) as experimental server.
+1. from your current working directory
+
+```shell
+mkdir my-project && cd my-project
+```
+
+2. Once inside the just made directory. 
+
+
+```shell
+# You'll be asked to confirm the use of the --bare flag
+npx react-dang install --bare --name=my-project \
+  --author='Your Name' \
+  --license='MIT' \
+  --version='1.0.0' \
+  --description='My Project does this and that'
+```
+
+3. the output should look like this.
+
+```shell
+
+# react-dang ready to go
+
+  already in the project root directory
+  
+  npm run build-prod
+  
+  npm run koorie
+  
+```
+
+**_after running 'npm run koorie' command  the output should look like this ⬇_**
+
+```shell  
+> my-project@1.0.0 koorie
+> npx koorie --static-files=public  --library=react
+
+{ address: '127.0.0.1', family: 'IPv4', port: 3001 }
+koorie your browser here ⬇︎ 
+ http://localhost:3001
+----------------------------------------------------
+
+```
+
+open your browser and try it out
+
 ___
+
+## Commands & Flags
+
+___
+
+| commands    | flags                     | description                                                                |
+|:------------|:--------------------------|:---------------------------------------------------------------------------|
+| install     | --bare={void}             | Generates a project in current working directory ❗️ [overwrites]           |
+|             | --author={string}         | Default set autogenerated.                                                 |
+|             | --description={string}    | Default set autogenerated.                                                 |
+|             | --license={string}        | Default set to Apache-2.0                                                  |
+|             | --name={string}           | Default set autogenerated.                                                 |
+|             | --version={semver-string} | Default set to 0.0.1.                                                      |
+
+### install
+
+The `install` command will instantiate a React project based on [@react-dang/app](https://github.com/simonedelpopolo/react-dang-app/)
+
+___
+
+  - #### --bare
+    - This flag doesn't accept any argument. Instantiates the project in the current working directory.
+    - ⚠ will overwrite everything in the current working directory.
+      
+  - #### --name
+    - Sets package.json property name.
+    - Default set to autogenerated.
+
+  - #### --author
+    - Sets package.json property author.
+    - Default set to autogenerated.
+
+  - #### --description
+    - Sets package.json property description.
+    - Default set to autogenerated.
+
+  - #### --license
+    - Sets package.json property license.
+    - Default set to Apache-2.0.
+
+  - #### --version
+    - Sets package.json property version.
+    - Default set to 0.0.1
+    
+
+___
+
+## Road Map
+
+___
+
+- [ ] --blank{void} - Initializes a React project without any components.
+- [ ] --git={void} - Initializes the local git repository, requires git installed on the host OS.
+- [ ] --json={options(option:value)}-{from file} - Populates the **_package.json_** properties from a set of options(key:value) or load from a file.
+- [ ] --url-repository={string} - Sets the git repository url **_package.json_**
+- [ ] --dependency={options(option:value)} - Sets dependencies **_package.json_**
+- [ ] --devDependency={options(option:value)} - Sets extra-devDependencies **_package.json_**
+- [ ] --scripts={options(option:value)} - Sets extra-scripts **_package.json_**
+
+___
+
+## Koorie
+
+___
+
+In this template project Koorie exposes a route to handle the message sent from the contacts form.  
+just check the code @**_./routes/message/route.js_** in the root directory of your project.
+
+Another important file @**_./middleware.js_** where is possible to inject new routes into koorie. check the code.
+
+To know more about Koorie and its functionalities go @ [➡ GitHub](https://github.com/simonedelpopolo/koorie).
+
+___
+
+## JetBrains OSS License
+
+___
+
+I want to thank JetBrains to grant me the Open Source Software license for all their products. This opportunity gives me
+strength to keep on going with my studies and personal project.  
+To learn more about this opportunity have a look
+at [Licenses for Open Source Development - Community Support](https://www.jetbrains.com/community/opensource/).
+
+_Thank you_
