@@ -3,6 +3,7 @@ import {
     install_bare_flag__,
     install_command__,
     install_description_flag__,
+    install_git_flag__,
     install_license_flag__,
     install_name_flag__,
     install_version_flag__,
@@ -41,6 +42,19 @@ export async function install_command( options ) {
  */
 export async function install_bare_flag( options ){
     return install_bare_flag__( options )
+}
+
+/**
+ * Object [ input.install_git_flag ].
+ *
+ * - --git flag type check.
+ *
+ * @param {string} options - the value from the shell.
+ * @throws { Error }
+ * @returns {Promise<Error|undefined>|Error|undefined}
+ */
+export async function install_git_flag( options ){
+    return install_git_flag__( options )
 }
 
 /**
