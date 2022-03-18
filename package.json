@@ -1,6 +1,6 @@
 {
   "name": "react-dang",
-  "version": "1.2.8-alpha",
+  "version": "1.2.9-alpha",
   "description": "React basic application with Koorie.",
   "type": "module",
   "engines": {
